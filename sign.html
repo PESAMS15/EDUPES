@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+   
+    <style>
+        .fg{
+            width: 50%;
+        }
+
+         .om{
+            width: 25%;
+        }
+        @media (max-width: 575px) {
+            .em{
+                width: 95%;
+            }
+            .om{
+                width: 160px;
+                
+            }
+            #dob{
+                width: 80%;
+            }
+            .fg{
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+<body class="p-3">
+    <form action="">
+        <div class="container-sm-fluid mx-auto  fg py-4 ">
+            <div class="container-sm   fg1 py-3 bg-white">
+                <div class="py-4 container-sm">
+                    <div class="container-sm text-center ">
+                        <img class="om" src="./persylog-removebg-preview (5).png" alt="">
+                        <h4 class="text-center py-4">Sign in to Edupes</h4>
+                        <input type="email" id="email" placeholder="Enter your Email " class="form-control d-block my-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input  type="password" id="password" placeholder="Password " class="form-control d-block my-3 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <div class="d-flex justify-content-between g py-2">
+                        
+                        </div>
+                    </div>
+                    <button onclick="emp(event)" class="d-block btn btn-primary mx-auto w-100 py-2 fs-5 fw-bold"> Log in </button>
+                </div>
+                <div class="py-4 g text-center pp container">
+                    Don't have an account? <a href="">Sign up</a>
+                </div>
+              
+                
+                  </form>
+                  
+</body>
+<script>
+    function emp(event){
+        event.preventDefault();
+        let email = document.getElementById("email")
+        let password = document.getElementById("password")
+        console.log(email.value)
+        console.log(password.value)
+     let locemail =   localStorage.getItem("email")
+      let locpassword =  localStorage.getItem("password")
+      console.log(locemail)
+      console.log(locpassword)
+      if (email.value == locemail && password.value == locpassword){
+        console.log("working")
+        location.href = "Dashboard.html"
+        
+      }
+      else{
+        alert("incorrect email or password")
+      }
+
+    }  
+
+</script>
+</html>

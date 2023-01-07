@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <!-- Coding with nick -->
+  <title>Quiz App</title>
+</head>
+<body>
+  <div class="quiz-container" id="quiz">
+    <CEnter><h1>Edupes History  Test</h1></CEnter>
+    <div class="quiz-header">
+      <h2 id="question">Question Text</h2>
+      <ul>
+        <li>
+          <input type="radio" name="answer" id="a" class="answer">
+          <label for="a" id="a_text">Answer</label>
+        </li>
+
+        <li>
+          <input type="radio" name="answer" id="b" class="answer">
+          <label for="b" id="b_text">Answer</label>
+        </li>
+
+        <li>
+          <input type="radio" name="answer" id="c" class="answer">
+          <label for="c" id="c_text">Answer</label>
+        </li>
+
+        <li>
+          <input type="radio" name="answer" id="d" class="answer">
+          <label for="d" id="d_text">Answer</label>
+        </li>
+
+      </ul>
+    </div>
+
+    <button id="submit">Submit</button>
+
+  </div>
+
+
+
+  
+</body>
+</html>
+<script>
+    const quizData = [
+    {
+        question: "When did Nigeria become a republic?",
+        a: "!956",
+        b: "1966",
+        c: "1111",
+        d: "1963",
+        correct: "d",
+    },
+    {
+        question: "Who was the first man to reach space?",
+        a: "Neil Armstrong",
+        b: "Alberto delrio",
+        c: "Yuri Gagarin",
+        d: "Hamina Georgia",
+        correct: "c",
+    },
+    {
+        question: "Who won the 2014 world cup?",
+        a: "Argentina",
+        b: "Netherlands",
+        c: "France",
+        d: "Germany",
+        correct: "d",
+    },
+    {
+        question: "Who was the first rebulic president of nigeria?",
+        a: "Olusegun Obasanjo",
+        b: "Alhaji Shehu Shagari",
+        c: "Nnamdi Azikwe",
+        d: "Tafawa balewa",
+        correct: "b",
+    },
+    {
+        question: "What is the oldest football competition in the world?",
+        a: "English F.A cup",
+        b: "World cup",
+        c: "Champions league",
+        d: "AFCON",
+        correct: "a",
+    },
+    {
+        question: "The following are former head odf states of Nigeria except?",
+        a: "Mohammed Buhari",
+        b: "Olusegun Obasanjo",
+        c: "Muritala muhammed",
+        d: "Tafawa balewa",
+        correct: "a",
+    },
+    {
+        question: "Who built the first car?",
+        a: "Charles Babbage ",
+        b: "Karl Benz",
+        c: "Henry Toyota",
+        d: "James Justin",
+        correct: "b",
+    },
+    {
+        question: "Who was the last governor of Oyo-state ?",
+        a: "Abiola Ajimobi",
+        b: "Teslim Folarin",
+        c: "Seyi Makinde",
+        d: "M.K.O Abiola",
+        correct: "a",
+    },
+    {
+        question: "Democracy day is on which date?",
+        a: "May 27",
+        b: "May 29",
+        c: "October 1st",
+        d: "June 12",
+        correct: "d",
+    },
+    
+    {
+        question: "Who is on the 20 naira note?",
+        a: "Funmilayo kuti",
+        b: "Ladi Kwali",
+        c: "Omolola Adeyeri",
+        d: "Boluwatife Adam",
+        correct: "a",
+    },
+
+
+];
+
+const quiz= document.getElementById('quiz')
+const answerEls = document.querySelectorAll('.answer')
+const questionEl = document.getElementById('question')
+const a_text = document.getElementById('a_text')
+const b_text = document.getElementById('b_text')
+const c_text = document.getElementById('c_text')
+const d_text = document.getElementById('d_text')
+const submitBtn = document.getElementById('submit')
+
+
+let currentQuiz = 0
+localStorage.setItem("cur", currentQuiz)
+let score = 0
+
+loadQuiz()
+
+function loadQuiz() {
+
+    deselectAnswers()
+
+    const currentQuizData = quizData[currentQuiz]
+
+    questionEl.innerText = currentQuizData.question
+    a_text.innerText = currentQuizData.a
+    b_text.innerText = currentQuizData.b
+    c_text.innerText = currentQuizData.c
+    d_text.innerText = currentQuizData.d
+}
+
+function deselectAnswers() {
+    answerEls.forEach(answerEl => answerEl.checked = false)
+}
+
+function getSelected() {
+    let answer
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id
+            console.log(answerEl.id)
+        }
+    })
+    return answer
+}
+let index = 5
+
+ console.log(currentQuiz)
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    const answer = getSelected();
+    if(answer) {
+       if(answer === quizData[currentQuiz].correct) {
+           score= score+ 10
+       }
+
+       currentQuiz++
+      
+
+       if(currentQuiz < quizData.length) {
+           loadQuiz()
+       } else {
+            localStorage.setItem("history", score)
+            location.href = "../Dashboard.html"
+           quiz.innerHTML = `
+           <h2>Your Score is ${score} </h2>
+           `
+           
+          
+       }
+    }
+})
+</script>

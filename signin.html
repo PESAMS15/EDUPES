@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="./all.css">
+    <style>
+      
+        .em{
+            /* width: 300px; */
+            width: 50%;
+        }
+        .om{
+            width: 50%;
+        }
+        #dob{
+            width: 25%;
+        }
+        @media (max-width: 575px) {
+            .em{
+                width: 95%;
+            }
+            .om{
+                width: 160px;
+                
+            }
+            #dob{
+                width: 80%;
+            }
+
+        }
+    </style>
+</head>
+<body class="">
+    <div class="container-md  mx-auto p-2 ">
+        <div class="w-25 mx-auto d-flex justify-content-center">
+        <img class="om  mx-auto " src="./persylog-removebg-preview (5).png" alt="">
+
+        </div>
+        <h1 class="text-center  ">Journey with us in the world of Education</h1>
+        <div class="d-sm-flex gap-3 p-3 ">
+            <input type="text" id="surname" class="form-control my-3" placeholder="Surname">
+            <input type="text" id="firstname" class="form-control my-3" placeholder="First name">
+            <input type="text" id="middlename" class="form-control my-3" placeholder="Middle name">
+
+        </div>
+       <div class="p-3 d-flex gap-3 align-items-center">
+            <h4>Gender:</h4>
+            <div>Male: <input type="radio" name="Gen" id="male"> </div>
+            <div>Female: <input type="radio" name="Gen" id="female"> </div>
+       </div>
+        <div  class="p-3 d-flex gap-3 align-items-center">
+            <h4 >Date of Birth:</h4> <input id="dob" class="form-control " type="date">
+        </div>
+       <input type="email" id="email" class="form-control em m-3" placeholder="Email address">
+       <input type="password" id="password" class="form-control em m-3" placeholder="Password">
+       <input type="password" id="conpassword" class="form-control em m-3" placeholder="Confirm password">
+       <div class="d-flex justify-content-end w-100 p-3">
+        <button id="submit" class=" btn btn-primary">Submit</button>
+       </div>
+    </div>
+</body>
+</html>
+<script>
+    let surname = document.getElementById("surname")
+    let firstname = document.getElementById("firstname")
+    let middlename = document.getElementById("middlename")
+    let male = document.getElementById("male")
+    let female = document.getElementById("female")
+    let dob = document.getElementById("dob")
+    let email = document.getElementById("email")
+    let password = document.getElementById("password")
+    let conpassword = document.getElementById("conpassword")
+    let submit = document.getElementById("submit")
+
+    submit.addEventListener("click", function(){
+        if (surname.value =="" || firstname.value == "" || middlename.value =="" || email.value =="" || password.value =="" || conpassword ==""){
+            alert("Please fill al the Inputs")
+        }
+        else{
+            console.log("Surname is " + surname.value)
+            console.log("first name is " + firstname.value)
+            console.log("middle name is" + middlename.value)
+            console.log(male.value)
+            console.log("date of birth is " + dob.value)
+            console.log("email is " + email.value)
+            console.log("password is " + password.value)
+            localStorage.setItem("surname", surname.value)    
+            localStorage.setItem("firstname", firstname.value)    
+            localStorage.setItem("middlename", middlename.value)    
+            localStorage.setItem("email", email.value)    
+            localStorage.setItem("password", password.value)    
+            location.href = "sign.html"
+        }
+
+       
+   
+    })
+    
+ 
+</script>

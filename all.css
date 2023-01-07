@@ -1,0 +1,16 @@
+.line{
+    border: 1px solid black;
+    width: 400px;
+}
+.head{
+    text-align: center;
+    font-size: 55px;
+    font-family: cursive;
+}
+.said{
+    border: 1px solid black;
+    width: fit-content;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 5px;
+}
