@@ -107,9 +107,9 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="Dashboard.html">Home</a></li>
-							<li class="active"><a href="course.html">Our Courses</a></li>
-							<li><a href="teacher.html">Teacher</a></li>
+							<li><a class="activr" href="Dashboard.html">Home</a></li>
+							<li ><a href="course.html">Our Courses</a></li>
+							<li><a href="result.html">Result</a></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="profile.html">Profile</a></li>
 							<li><a href="contact.html">Contact</a></li>
@@ -197,7 +197,7 @@
 						<div class="desc">
 							<h3><a href="#">Science &amp; Technology</a></h3>
 							<p>The world of science is evolving everyday. Are you evolving with it or you are still stagnant in where you are? Find your answer through this exam and once again I wish you the best of luck😉😉😉</p>
-							<span><a href="./54. Quiz App/index.html" class="btn btn-primary btn-sm btn-course">Take An Exam </a></span>
+							<span><a href="./54. Quiz App/indexd.html" class="btn btn-primary btn-sm btn-course">Take An Exam </a></span>
 						</div>
 					</div>
 				</div>
@@ -215,6 +215,10 @@
 			
 			</div>
 		</div>
+	</div>
+
+	<div class="animate-box">
+		<h3 class="text-center" id="amt"></h3>
 	</div>
 
 
@@ -325,6 +329,9 @@
     });
     // let welcome = document.getElementById("welcome")
     let first = localStorage.getItem("firstname")
+	if (!first){
+		window.location.href = "sign.html"
+	}
     let welcome = "Welcome to Edupes "+ first;
 	document.getElementById("get").innerText += ` ${first}`;
 	let i = 0;
@@ -339,6 +346,9 @@
         }
     }
 	typing()
+	let amount = localStorage.getItem("amount")
+	console.log(amount)
+	document.getElementById("amt").innerText = "Amount Deposited: " + "NGN " + amount
 	// function typed(){
 	// 	if(i<lop.length){
     //         document.getElementById("text").innerHTML += lop.charAt(i);

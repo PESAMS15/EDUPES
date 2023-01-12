@@ -97,11 +97,29 @@ const submitBtn = document.getElementById('submit')
 let currentQuiz = 0
 localStorage.setItem("cur", currentQuiz)
 let score = 0
-
+let  seconds = 00;
+let minutes = 05
 loadQuiz()
-
+const count = setInterval(()=>{{
+    seconds --
+    if (seconds < 0){
+        seconds =59;
+        minutes--
+    }
+    // console.log(time);
+    document.getElementById("minutes").innerText= minutes
+    document.getElementById("seconds").innerText = seconds
+    if(seconds == 0 && minutes == 0){
+        clearInterval(count)
+        localStorage.setItem("english", score)
+            location.href = "../Dashboard.html"
+           quiz.innerHTML = `
+           <h2>Sorry you ran out of time try to be conscious with your time in the future. </h2>
+           `
+    }
+}}, 1000)
 function loadQuiz() {
-
+   
     deselectAnswers()
 
     const currentQuizData = quizData[currentQuiz]

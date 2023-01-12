@@ -105,10 +105,9 @@
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li><a href="Dashboard.html">Home</a></li>
-							<li class="active"><a href="courses.html">Exams</a></li>
-							<li><a href="teacher.html">Teacher</a></li>
+							<li><a href="courses.html">Exams</a></li>
+							<li class="active"><a href="result.html">Result</a></li>
 							<li><a href="about.html">About</a></li>
-							<li><a href="pricing.html">Pricing</a></li>
 							<li><a href="profile.html">Profile</a></li>
 							<li><a href="contact.html">Contact</a></li>
 						</ul>
@@ -140,8 +139,33 @@
 
 
 	<div id="fh5co-course">
-		<div class="container">
-			
+		<div class="container-md">
+            <table class="table w-100 table-striped  mx-auto">
+                <thead>
+                    <tr>
+                        <td>S/N</td>
+                        <td>Course</td>
+                        <td>CA1</td>
+                        <td>	 CA2</td>
+                        <td>Exam</td>
+                        <td>Total</td>
+                        <td>G</td>
+                        <td>CH</td>
+                        <td>G.P</td>
+                    </tr>
+                </thead>
+                <tbody id="content">
+        
+                </tbody>
+                <tfoot><br>
+                    <tr >
+                      <td rowspan="2" colspan="7"></td>
+                      <td rowspan="2" id="totalch"></td>
+                      <td rowspan="2" id="totalgp"></td>
+                    </tr>
+                </tfoot>
+            </table>
+         <h1 class="animate-box" id="gpa"></h1>
 		</div>
 	</div>
 
@@ -266,6 +290,170 @@
         }
     }
     typing()
+
+    let science =localStorage.getItem("science")
+    let english =localStorage.getItem("english")
+    let maths =localStorage.getItem("maths")
+    let history =localStorage.getItem("history")
+	let ar = [
+	  {
+			name:  "English",	
+            test1: Math.floor(Math.random()*10),
+            test2: Math.floor(Math.random()*20),
+            exam:  Number(english),
+            hours: Math.floor(Math.random()*5),
+         
+        },
+		   {
+			name:  "Maths",	
+            test1: Math.floor(Math.random()*10),
+            test2: Math.floor(Math.random()*20),
+            exam:  Number(maths),
+            hours: Math.floor(Math.random()*5),
+           
+        }
+		,
+		{
+			name:  "Science and T.",	
+            test1: Math.floor(Math.random()*10),
+            test2: Math.floor(Math.random()*20),
+            exam:  Number(science),
+            hours: Math.floor(Math.random()*5),
+           
+        }
+		,
+		{
+			name:  "History",	
+            test1: Math.floor(Math.random()*10),
+            test2: Math.floor(Math.random()*20),
+            exam:  Number(history),
+            hours: Math.floor(Math.random()*5),
+           
+        }
+		,
+	
+        
+        
+        
+	]
+	show()
+	console.log(ar)
+	
+	function show() {
+          let totalch = 0
+          let totalgp = 0
+            content.innerHTML = ""
+            for (let i = 0; i < ar.length; i++) {
+              
+              // console.log(total)
+                const item = ar[i];
+              let total1 = Number(item.test1) + Number(item.test2) + Number(item.exam)
+              let g = ""
+              let G = 0
+              
+              if (total1 >= 70 ){
+                g = "A"
+              }
+              else if (total1 < 70 && total1 >= 60 ){
+                g = "B"
+              }
+              else if (total1 < 60 && total1 >= 50 ){
+                g = "C"
+              }
+              else if (total1 < 50 && total1 >= 40 ){
+                g = "D"
+              }
+              else if (total1 < 40 && total1 >= 30 ){
+                g = "E"
+              }
+              else {
+                g = "F"
+              }
+              if (g == "A"){
+                G = 5
+              }
+              else if (g =="B"){
+                G = 4
+              }
+              else if (g == "C"){
+                G = 3
+              }
+              else if (g == "D"){
+                G = 2
+              }
+              else if (g == "E"){
+                G = 1
+              }
+             let ch = 0
+             let hours = 0
+                hours = Number(item.hours) 
+              let grade = G * Number(item.hours)
+              console.log(typeof(item.hours))
+              // console.log(ch)
+              console.log(grade)
+              totalch+= parseInt(hours)
+              if (item.hours == 0){
+                totalch = 0
+              }
+              totalgp+= parseInt(grade)
+                // console.log(totalch)
+              
+                console.log(typeof( hours))
+                document.getElementById("totalch").innerHTML= totalch
+                document.getElementById("totalgp").innerHTML= totalgp
+                let gpa = totalgp/totalch;
+               
+                if (gpa < 2){
+					gpa = 2
+					// document.getElementById("gpa").innerHTML= "Your GPA is " + gpa.toFixed(2)
+                  document.getElementById("gpa").innerHTML = "Go and Dropout, U be olodo"
+                }
+
+                else if (gpa == NaN){
+					gpa = 2
+					// document.getElementById("gpa").innerHTML= "Your GPA is " + gpa.toFixed(2)
+                  document.getElementById("gpa").innerHTML = "Go and Dropout, U be olodo"
+
+                }
+				else if (gpa == Infinity){
+					// gpa = 2
+					// document.getElementById("gpa").innerHTML= "Your GPA is " + gpa.toFixed(2)
+                  document.getElementById("gpa").innerHTML = "Go and Dropout, U be olodo"
+
+                }
+				
+                else{
+                  document.getElementById("gpa").innerHTML= "Your GPA is " + gpa.toFixed(2)
+                }
+				if(item.hours == 0){
+					item.hours++
+				}
+				if (item.test2 <5){
+					item.test2 = item.test2+5
+				}
+				if (item.test1 == 0){
+					item.test1 = item.test1 +2	
+				}
+                content.innerHTML +=`
+                <tr>
+                <td>${i + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.test1}</td>
+                <td>${item.test2}</td>
+                <td>${item.exam}</td>
+                <td>${total1}</td>
+                <td>${g}</td>
+                <td>${item.hours}</td>
+                <td>${grade}</td>
+            </tr>
+                `
+              
+            }
+           
+    
+            // console.log(grade)
+        }
+
 	</script>
 	</body>
 </html>

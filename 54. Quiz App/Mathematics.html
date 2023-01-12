@@ -12,6 +12,9 @@
   <div class="quiz-container" id="quiz">
     <CEnter><h1>Edupes Mathematics Test</h1></CEnter>
     <div class="quiz-header">
+      <div class="fs-1">
+        <span id="minutes">05</span>:<span id="seconds">00</span>
+    </div>
       <h2 id="question">Question Text</h2>
       <ul>
         <li>
@@ -144,11 +147,29 @@ const submitBtn = document.getElementById('submit')
 let currentQuiz = 0
 localStorage.setItem("cur", currentQuiz)
 let score = 0
-
+let  seconds = 00;
+let minutes = 10
 loadQuiz()
-
+const count = setInterval(()=>{{
+    seconds --
+    if (seconds < 0){
+        seconds =59;
+        minutes--
+    }
+    // console.log(time);
+    document.getElementById("minutes").innerText= minutes
+    document.getElementById("seconds").innerText = seconds
+    if(seconds == 0 && minutes == 0){
+        clearInterval(count)
+        localStorage.setItem("english", score)
+            location.href = "../Dashboard.html"
+           quiz.innerHTML = `
+           <h2>Sorry you ran out of time try to be conscious with your time in the future. </h2>
+           `
+    }
+}}, 1000)
 function loadQuiz() {
-
+ 
     deselectAnswers()
 
     const currentQuizData = quizData[currentQuiz]
